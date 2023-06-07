@@ -1607,7 +1607,7 @@ class ftTXT(object):
     >>>   print("Warnung: die Batteriespannung des TXT ist schwach. Bitte die Batterie umgehend austauschen !")
     
     """
-    if self._use_TransferMode:
+    if self._use_TransferAreaMode:
       return ftTA2py.TxtPowerSupply(ext)
     elif self._directmode:
       return self._current_power
@@ -1627,7 +1627,7 @@ class ftTXT(object):
     >>> print("Die Temperatur im innern des TXT betraegt: ", Temperatur, " (Einheit unbekannt)")
     
     """
-    if self._use_TransferMode:
+    if self._use_TransferAreaMode:
       return ftTA2py.TxtCPUTemperature(ext)
     if self._directmode:
       return self._current_temperature
