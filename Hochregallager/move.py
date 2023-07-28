@@ -41,44 +41,50 @@ tst_b7 = txt.input(7, ext=1)
 tst_b8 = txt.input(8, ext=1)
 
 def moveReset():
-    logSPLK('Function: moveReset | Status: Start')
+    logSPLK('Function: moveHBWReset | Status: Start')
 
-    logSPLK('Function: moveReset | Engine: mtr_a3 | Status: Moving | Speed: 512 | Sensor: tst_a6')
+    logSPLK('Function: moveHBWReset | Engine: mtr_a3 | Status: Moving | Speed: 512 | Sensor: tst_a6')
     mtr_a3.setSpeed(512)
     while tst_a6.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a6')
 
-    logSPLK('Function: moveReset | Engine: mtr_a2 | Status: Moving | Speed: 512 | Sensor: tst_a8')
+    logSPLK('Function: moveHBWReset | Engine: mtr_a2 | Status: Moving | Speed: 512 | Sensor: tst_a8')
     mtr_a2.setSpeed(512)
     while tst_a8.state()!=1:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_a2 | Status: Stop | Speed: 0 | Sensor: tst_a8')
 
-    logSPLK('Function: moveReset | Engine: mtr_a1 | Status: Moving | Speed: 512 | Sensor: tst_a5')
+    logSPLK('Function: moveHBWReset | Engine: mtr_a1 | Status: Moving | Speed: 512 | Sensor: tst_a5')
     mtr_a1.setSpeed(512)
     while tst_a5.state()!=1:
         txt.updateWait()
     mtr_a1.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_a1 | Status: Stop | Speed: 0 | Sensor: tst_a5')
 
-    logSPLK('Function: moveReset | Engine: mtr_b2 | Status: Moving | Speed: 512 | Sensor: tst_b2')
+    logSPLK('Function: moveHBWReset | Engine: mtr_b2 | Status: Moving | Speed: 512 | Sensor: tst_b2')
     mtr_b2.setSpeed(512)
     while tst_b2.state()!=1:
         txt.updateWait()
     mtr_b2.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_b2 | Status: Stop | Speed: 0 | Sensor: tst_b2')
 
-    logSPLK('Function: moveReset | Engine: mtr_b3 | Status: Moving | Speed: 512 | Sensor: tst_b3')
+    logSPLK('Function: moveHBWReset | Engine: mtr_b3 | Status: Moving | Speed: 512 | Sensor: tst_b3')
     mtr_b3.setSpeed(512)
     while tst_b3.state()!=1:
         txt.updateWait()
     mtr_b3.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_b3 | Status: Stop | Speed: 0 | Sensor: tst_b3')
 
-    logSPLK('Function: moveReset | Engine: mtr_b1 | Status: Moving | Speed: 512 | Sensor: tst_b1')
+    logSPLK('Function: moveHBWReset | Engine: mtr_b1 | Status: Moving | Speed: 512 | Sensor: tst_b1')
     mtr_b1.setSpeed(512)
     while tst_b1.state()!=1:
         txt.updateWait()
     mtr_b1.stop()
-    logSPLK('Function: moveReset | Status: Done')
+    logSPLK('Function: moveHBWReset | Engine: mtr_b1 | Status: Stop | Speed: 0 | Sensor: tst_b1')
+    logSPLK('Function: moveHBWReset | Status: Done')
 
 def moveHBWGet(col, get_cell):
     logSPLK('Function: moveHBWGet | Status: Start')
@@ -89,6 +95,7 @@ def moveHBWGet(col, get_cell):
     while mtr_a1.getCurrentDistance() < col:
         txt.updateWait()
     mtr_a1.stop()
+    logSPLK('Function: moveHBWGet | Engine: mtr_a1 | Status: Stop | Speed: 0 | Distance:' + str(col))
 
     logSPLK('Function: moveHBWGet | Engine: mtr_a2 | Status: Moving | Speed: -512 | Distance:' + str(get_cell))
     mtr_a2.setSpeed(-512)
@@ -96,6 +103,7 @@ def moveHBWGet(col, get_cell):
     while mtr_a2.getCurrentDistance() < get_cell:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWGet | Engine: mtr_a2 | Status: Stop | Speed: 0 | Distance:' + str(get_cell))
     logSPLK('Function: moveHBWGet | Status: Done')
 
 def moveHBWGrab():
@@ -106,6 +114,7 @@ def moveHBWGrab():
     while tst_a7.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWGrab | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a7')
 
     logSPLK('Function: moveHBWGrab | Engine: mtr_a2 | Status: Moving | Speed: 512 | Distance: 100')
     mtr_a2.setSpeed(512)
@@ -113,18 +122,21 @@ def moveHBWGrab():
     while mtr_a2.getCurrentDistance() < 100:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWGrab | Engine: mtr_a2 | Status: Stop | Speed: 0 | Distance: 100')
 
     logSPLK('Function: moveHBWGrab | Engine: mtr_a3 | Status: Moving | Speed: 512 | Sensor: tst_a6')
     mtr_a3.setSpeed(512)
     while tst_a6.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWGrab | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a6')
 
     logSPLK('Function: moveHBWGrab | Engine: mtr_a2 | Status: Moving | Speed: 512 | Sensor: tst_a8')
     mtr_a2.setSpeed(512)
     while tst_a8.state()!=1:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWGrab | Engine: mtr_a2 | Status: Stop | Speed: 0 | Sensor: tst_a8')
     logSPLK('Function: moveHBWGrab | Status: Done')
 
 def moveHBWDeliver():
@@ -135,6 +147,7 @@ def moveHBWDeliver():
     while tst_a5.state()!=1:
         txt.updateWait()
     mtr_a1.stop()
+    logSPLK('Function: moveHBWDeliver | Engine: mtr_a1 | Status: Stop | Speed: 0 | Sensor: tst_a5')
     ###############################Parallel movement test################################################
     txt.SyncDataBegin()
     mtr_a3.setSpeed(-512)
@@ -169,12 +182,14 @@ def moveHBWBack(cell_name,col,drop_cell):
     while tst_a8.state()!=1:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWBack | Engine: mtr_a2 | Status: Stop | Speed: 0 | Sensor: tst_a8')
 
     logSPLK('Function: moveHBWBack | Engine: mtr_a3 | Status: Moving | Speed: 512 | Sensor: tst_a6')
     mtr_a3.setSpeed(512)
     while tst_a6.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWBack | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a6')
 
     logSPLK('Function: moveHBWBack | Engine: mtr_a1 | Status: Moving | Speed: -512| Distance:' + str(col))
     mtr_a1.setSpeed(-512)
@@ -182,6 +197,7 @@ def moveHBWBack(cell_name,col,drop_cell):
     while mtr_a1.getCurrentDistance() < col:
         txt.updateWait()
     mtr_a1.stop()
+    logSPLK('Function: moveHBWBack | Engine: mtr_a1 | Status: Stop | Speed: 0| Distance:' + str(col))
 
     logSPLK('Function: moveHBWBack | Engine: mtr_a2 | Status: Moving | Speed: -512 | Distance:' + str(drop_cell))
     mtr_a2.setSpeed(-512)
@@ -189,6 +205,7 @@ def moveHBWBack(cell_name,col,drop_cell):
     while mtr_a2.getCurrentDistance() < drop_cell:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWBack | Engine: mtr_a2 | Status: Stop | Speed: 0 | Distance:' + str(drop_cell))
     logSPLK('Function: moveHBWBack | Status: Done')
 
 def moveHBWDrop():
@@ -199,6 +216,7 @@ def moveHBWDrop():
     while tst_a7.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWDrop | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a7')
 
     logSPLK('Function: moveHBWDrop | Engine: mtr_a2 | Status: Moving | Speed: -512 | Distance: 100')
     mtr_a2.setSpeed(-512)
@@ -206,12 +224,14 @@ def moveHBWDrop():
     while mtr_a2.getCurrentDistance() < 100:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWDrop | Engine: mtr_a2 | Status: Stop | Speed: 0 | Distance: 100')
 
     logSPLK('Function: moveHBWDrop | Engine: mtr_a3 | Status: Moving | Speed: 512 | Sensor: tst_a6')
     mtr_a3.setSpeed(512)
     while tst_a6.state()!=1:
         txt.updateWait()
     mtr_a3.stop()
+    logSPLK('Function: moveHBWDrop | Engine: mtr_a3 | Status: Stop | Speed: 0 | Sensor: tst_a6')
     logSPLK('Function: moveHBWDrop | Status: Done')
 
 def moveHBWReset():
@@ -222,12 +242,14 @@ def moveHBWReset():
     while tst_a8.state()!=1:
         txt.updateWait()
     mtr_a2.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_a2 | Status: Stop | Speed: 0 | Sensor: tst_a8')
 
     logSPLK('Function: moveHBWReset | Engine: mtr_a1 | Status: Moving | Speed: 512 | Sensor: tst_a5')
     mtr_a1.setSpeed(512)
     while tst_a5.state()!=1:
         txt.updateWait()
     mtr_a1.stop()
+    logSPLK('Function: moveHBWReset | Engine: mtr_a1 | Status: Stop | Speed: 0 | Sensor: tst_a5')
     logSPLK('Function: moveHBWReset | Status: Done')
 
 def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg_ho_forth,vg_ho_down):
@@ -240,6 +262,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b1.getCurrentDistance() < vg_cb_turn:
         txt.updateWait()
     mtr_b1.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b1 | Status: Stop | Speed: 0 | Distance: ' + str(vg_cb_turn))
 
     #Fahre Arm raus
     logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Moving | Speed: -512 | Distance: ' + str(vg_cb_forth))
@@ -248,6 +271,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b3.getCurrentDistance() < vg_cb_forth:
         txt.updateWait()
     mtr_b3.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Stop | Speed: 0 | Distance: ' + str(vg_cb_forth))
 
     # Fahre Greifarm runter
     logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Moving | Speed: -512 | Distance: ' + str(vg_cb_down))
@@ -256,6 +280,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b2.getCurrentDistance() < vg_cb_down:
         txt.updateWait()
     mtr_b2.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Stop | Speed: 0 | Distance: ' + str(vg_cb_down))
 
     #Sauger ein
     logSPLK('Function: moveVGGrab | Engine: out_b7 | Status: On | Level: 512')
@@ -271,6 +296,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while tst_b2.state()!=1:
         txt.updateWait()
     mtr_b2.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Stop | Speed: 0 | Sensor: tst_b2')
 
     # Write value so that the main script continues
     tqueue.put(cell_count)
@@ -281,6 +307,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while tst_b3.state()!=1:
         txt.updateWait()
     mtr_b3.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Stop | Speed: 0 | Sensor: tst_b3')
 
     # Drehe zurück
     logSPLK('Function: moveVGGrab | Engine: mtr_b1 | Status: Moving | Speed: 512 | Distance: ' + str(vg_ho_turn))
@@ -289,6 +316,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b1.getCurrentDistance() < vg_ho_turn:
         txt.updateWait()
     mtr_b1.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b1 | Status: Stop | Speed: 0 | Distance: ' + str(vg_ho_turn))
 
     #Fahre Arm raus
     logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Moving | Speed: -512 | Distance: ' + str(vg_ho_forth))
@@ -297,6 +325,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b3.getCurrentDistance() < vg_ho_forth:
         txt.updateWait()
     mtr_b3.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Stop | Speed: 0 | Distance: ' + str(vg_ho_forth))
 
     # Fahre Greifarm runter
     logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Moving | Speed: -512 | Distance: ' + str(vg_ho_down))
@@ -305,6 +334,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while mtr_b2.getCurrentDistance() < vg_ho_down:
         txt.updateWait()
     mtr_b2.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Stop | Speed: 0 | Distance: ' + str(vg_ho_down))
 
     # Sauger aus
     logSPLK('Function: moveVGGrab | Engine: out_b8 | Status: Off | Level: 0')
@@ -320,6 +350,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while tst_b2.state()!=1:
         txt.updateWait()
     mtr_b2.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b2 | Status: Stop | Speed: 0 | Sensor: tst_b2')
 
     #Fahre Arm rein
     logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Moving | Speed: 512 | Sensor: tst_b3')
@@ -327,6 +358,7 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while tst_b3.state()!=1:
         txt.updateWait()
     mtr_b3.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b3 | Status: Stop | Speed: 0 | Sensor: tst_b3')
 
     # Drehe zurück
     logSPLK('Function: moveVGGrab | Engine: mtr_b1 | Status: Moving | Speed: 512 | Sensor: tst_b1')
@@ -334,4 +366,5 @@ def moveVGGrab(cell_count,tqueue,vg_cb_turn,vg_cb_forth,vg_cb_down,vg_ho_turn,vg
     while tst_b1.state()!=1:
         txt.updateWait()
     mtr_b1.stop()
+    logSPLK('Function: moveVGGrab | Engine: mtr_b1 | Status: Stop | Speed: 0 | Sensor: tst_b1')
     logSPLK('Function: moveVGGrab | Status: Done')

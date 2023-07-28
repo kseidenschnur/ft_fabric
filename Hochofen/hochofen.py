@@ -3,9 +3,14 @@ import time
 
 ######################################################################################################################################
 
+print("Hochofen")
+reset()
 while True:
+    txt.updateWait()
     if tst_a5.state() == 0:
-        time.sleep(1)
+        txt.updateWait()
+        time.sleep(2)
+        txt.updateWait()
         reset()
         txt.updateWait()
         hochofen()

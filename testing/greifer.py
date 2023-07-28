@@ -55,8 +55,7 @@ tst_b8 = txt.input(8, ext=1)
 
 # Drehe zurück
 print ('Starte Motor 1')
-mtr_b1.setSpeed(512)
-while tst_b1.state()!=1:
+mtr_b2.setSpeed(-512)
+while mtr_b2.getCurrentDistance() < 100:
     txt.updateWait()
-    print ('Motor 1 läuft noch....')
-mtr_b1.stop()
+mtr_b2.stop()

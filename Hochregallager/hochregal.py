@@ -38,6 +38,7 @@ tqueue = queue.Queue()
 
 # Make sure everything is in NULL position before start
 moveReset()
+txt.updateWait()
 
 # Start main script with loop going through the positions
 for cell_count in range(len(positions)):
@@ -53,12 +54,16 @@ for cell_count in range(len(positions)):
     logSPLK('Function: main | Status: Start | Cellname: ' + str(cell_name) + ' | Column: ' + str(col))
 
     moveHBWReset()
+    txt.updateWait()
     moveHBWGet(col,get_cell)
+    txt.updateWait()
     moveHBWGrab()
+    txt.updateWait()
 
     logSPLK('Function: main | Status: Bring to conveyor belt | Cellname: ' + str(cell_name))
 
     moveHBWDeliver()
+    txt.updateWait()
 
     logSPLK('Function: main | Status: Droped at conveyor belt | Cellname: ' + str(cell_name))
 
@@ -67,22 +72,29 @@ for cell_count in range(len(positions)):
         #Start multi thread so that VG gets good
         t_moveVGGrab.start()
 
+        logSPLK('Function: moveHBW | Engine: mtr_a4 | Status: Moving | Speed: -512 | Sensor: tst_a1')
         mtr_a4.setSpeed(-512)
         while tst_a1.state()!=0:
             txt.updateWait()
         time.sleep(0.5)
         mtr_a4.stop()
+        logSPLK('Function: moveHBW | Engine: mtr_a4 | Status: Stop | Speed: -512 | Sensor: tst_a1')
 
-    #Get result from mutli thread to keep going
+    #Get result from mutli thread to keep going (picked up good from conveiner belt)
     tresult = tqueue.get()
 
+    logSPLK('Function: moveHBW | Engine: mtr_a4 | Status: Moving | Speed: 512 | Sensor: tst_a4')
     if tst_a1.state() == 0:
         mtr_a4.setSpeed(512)
         while tst_a4.state()!=0:
             txt.updateWait()
         mtr_a4.stop()
+    logSPLK('Function: moveHBW | Engine: mtr_a4 | Status: Stop | Speed: 512 | Sensor: tst_a4')
 
     logSPLK('Function: main | Status: Bring back empty box | Cellname: ' + str(cell_name))
     moveHBWBack(cell_name,col,drop_cell)
+    txt.updateWait()
     moveHBWDrop()
+    txt.updateWait()
+    moveReset()
     logSPLK('Function: main | Status: Done | Cellname: ' + str(cell_name))

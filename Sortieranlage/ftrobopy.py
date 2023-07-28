@@ -1,8 +1,8 @@
 """
-***********************************************************************
+**************************************************************************
 **ftrobopy** - Ansteuerung des fischertechnik TXT Controllers in Python
-***********************************************************************
-(c) 2015, 2016, 2017, 2018, 2019, 2020, 2021 by Torsten Stuehn
+**************************************************************************
+(c) 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 by Torsten Stuehn
 """
 
 from __future__ import print_function
@@ -22,14 +22,14 @@ except:
   pass
 
 __author__      = "Torsten Stuehn"
-__copyright__   = "Copyright 2015 - 2021 by Torsten Stuehn"
+__copyright__   = "Copyright 2015 - 2023 by Torsten Stuehn"
 __credits__     = "fischertechnik GmbH"
 __license__     = "MIT License"
-__version__     = "1.99"
+__version__     = "2.0.0"
 __maintainer__  = "Torsten Stuehn"
 __email__       = "stuehn@mailbox.org"
 __status__      = "stable"
-__date__        = "12/04/2021"
+__date__        = "06/15/2023"
 
 try:
   xrange
@@ -1607,7 +1607,7 @@ class ftTXT(object):
     >>>   print("Warnung: die Batteriespannung des TXT ist schwach. Bitte die Batterie umgehend austauschen !")
     
     """
-    if self._use_TransferMode:
+    if self._use_TransferAreaMode:
       return ftTA2py.TxtPowerSupply(ext)
     elif self._directmode:
       return self._current_power
@@ -1627,7 +1627,7 @@ class ftTXT(object):
     >>> print("Die Temperatur im innern des TXT betraegt: ", Temperatur, " (Einheit unbekannt)")
     
     """
-    if self._use_TransferMode:
+    if self._use_TransferAreaMode:
       return ftTA2py.TxtCPUTemperature(ext)
     if self._directmode:
       return self._current_temperature
@@ -3298,14 +3298,12 @@ class ftrobopy(ftTXT):
         return self._outer.getCurrentInput(num-1, self._ext)
       def color(self):
         c = self._outer.getCurrentInput(num-1, self._ext)
-        if c < 700:
+        if c < 200:
           return 'weiss'
-        elif c < 1200:
+        elif c < 1000:
           return 'rot'
-        elif c < 1600:
-          return 'blau'
         else:
-          return 'leer'
+          return 'blau'
     
     M, I = self.getConfig(ext)
     I[num-1]= (ftTXT.C_VOLTAGE, ftTXT.C_ANALOG)

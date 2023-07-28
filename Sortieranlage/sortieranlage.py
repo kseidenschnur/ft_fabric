@@ -1,6 +1,5 @@
 import time
-from log import logSPLK
-from connectTXT import connectTXT
+from connectTXT import *
 
 logSPLK('Starting sortieranlage.py' )
 
@@ -101,11 +100,13 @@ def sort_color(color):
 
 ######################################################################################################################################
 
+print("Sortieranalage")
 while True:
+    txt.updateWait()
     if tst_a1.state() == 0:
         mtr_a1.setSpeed(-512)
         color_value = detect_color_value()
         color = determine_color(color_value)
-        print(color)
+        logSPLK("Status: " + color)
         sort_color(color)
         mtr_a1.stop()

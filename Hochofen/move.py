@@ -1,6 +1,5 @@
 import time
-from log import logSPLK
-from connectTXT import connectTXT
+from connectTXT import *
 
 #Connect to TXT
 txt = connectTXT()
@@ -57,6 +56,12 @@ tst_b8 = txt.input(8, ext=1)
 def hochofen():
     logSPLK('Function: hochofen | Status: Start')
 
+    mtr_a2.setSpeed(512)
+    mtr_a2.setDistance(0)
+    while tst_b5.state()!=1:
+        txt.updateWait()
+    mtr_a2.stop()
+
     #Kompressor ein
     logSPLK('Function: hochofen | Engine: out_b8 | Status: Turn on compressor | Level: 512')
     out_b8.setLevel(512)
@@ -104,7 +109,7 @@ def hochofen():
     mtr_a1.stop()
 
     #Greifer in position zur aufnahme
-    logSPLK('Function: hochofen | Engine: mtr_a1 | Status: Moving to position for pick up | Speed: -512')
+    logSPLK('Function: hochofen | Engine: mtr_a2 | Status: Moving to position for pick up | Speed: -512')
     mtr_a2.setSpeed(-512)
     mtr_a2.setDistance(0)
     while tst_a3.state()!=1:
@@ -215,7 +220,13 @@ def station():
     logSPLK('Function: station | Status: Done')
 
 def reset():
-    
+
+    mtr_a2.setSpeed(512)
+    mtr_a2.setDistance(0)
+    while tst_b5.state()!=1:
+        txt.updateWait()
+    mtr_a2.stop()
+
     mtr_b1.setSpeed(512)
     while tst_b1.state()!=1:
         txt.updateWait()
